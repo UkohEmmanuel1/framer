@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Canvas Studio visual website editor with a local design command assistant."><title>Canvas Studio — Visual editor</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-icon">◩</span><span>canvas<span class="brand-light">studio</span></span></div>
+  <div class="project-area"><span class="separator"></span><input id="project-name" aria-label="Project name" value="Untitled project"><span class="badge">LOCAL</span><span id="save-status" class="save-status">All changes saved</span></div>
+  <div class="top-actions"><button id="undo" class="icon-btn" title="Undo (Ctrl+Z)">↶</button><button id="redo" class="icon-btn" title="Redo (Ctrl+Shift+Z)">↷</button><button id="project-menu">Project ▾</button><button id="preview" class="secondary">▷ <span>Preview</span></button><button id="export" class="primary">Export site ↗</button></div>
+</header>
+<div class="workspace">
+  <aside class="sidebar left">
+    <nav class="left-tabs" aria-label="Editor panels"><button data-tab="layers" class="active">Layers</button><button data-tab="pages">Pages</button><button data-tab="assets">Assets</button></nav>
+    <div class="left-search"><span>⌕</span><input id="layer-search" placeholder="Search layers…" aria-label="Search layers"><kbd>⌘ K</kbd></div>
+    <div id="left-content"></div>
+    <div class="left-bottom"><button id="cms-open">▦ <span>Content collections</span><span class="count" id="cms-count">0</span></button><button id="help-open">ⓘ <span>Shortcuts & guide</span><kbd>?</kbd></button></div>
+  </aside>
+  <main class="main">
+    <div class="canvas-toolbar"><div class="tool-group"><button id="select-tool" class="tool active" title="Select (V)">↖</button><button id="pan-tool" class="tool" title="Pan (H or hold Space)">✋</button><span class="separator"></span><button id="insert-open" class="tool-label">＋ Insert</button><button id="add-text" class="tool" title="Text (T)">T</button><button id="add-frame" class="tool" title="Frame (F)">▣</button></div><div class="breakpoints"><button data-bp="desktop" class="active" title="Desktop">▱ <span>Desktop</span></button><button data-bp="tablet" title="Tablet">▯</button><button data-bp="mobile" title="Mobile">▯</button><span id="bp-size">1200</span></div><div class="zoom-controls"><button id="zoom-out" title="Zoom out">−</button><button id="zoom-label" title="Fit canvas">60%</button><button id="zoom-in" title="Zoom in">＋</button></div></div>
+    <div id="viewport" tabindex="0" aria-label="Design canvas"><div id="stage"><div class="artboard-caption"><span id="page-caption">Home</span><span>Desktop · 1200</span></div><div id="artboard"></div></div><div id="canvas-empty" hidden></div></div>
+    <div class="canvas-status"><span><i class="status-dot"></i> <span id="selection-status">Select a layer to start editing</span></span><span id="hint-status">Double-click text to edit · Space to pan · Ctrl + wheel to zoom</span><button id="grid-toggle" title="Toggle snapping">Snap on ⌗</button></div>
+  </main>
+  <aside class="sidebar right"><div class="right-tabs"><button data-right="design" class="active">Design</button><button data-right="agent">✦ Assistant <span class="small-dot"></span></button></div><div id="inspector"></div><div id="agent-panel" hidden><div class="agent-intro"><span class="agent-orb">✦</span><h2>Your canvas, a little faster.</h2><p>Describe an edit. Your local command assistant makes changes you can see and undo.</p><span class="agent-mode">● Local commands · no API needed</span></div><div id="chat-messages" aria-live="polite"></div><div id="agent-suggestions"><button data-prompt="Create a landing page for a design studio">✦ Build a studio landing page</button><button data-prompt="Add a features section">＋ Add a features section</button><button data-prompt="Make the background #111827">◐ Try a dark background</button></div><form id="agent-form"><textarea id="agent-input" rows="3" placeholder="Try: set selected text to “Hello world”" aria-label="Editing command"></textarea><div><button type="button" id="agent-help">Command guide</button><button class="primary" type="submit" title="Run command">↑</button></div></form><p class="agent-disclaimer">Deterministic editing assistant. Changes stay editable.</p></div></aside>
+</div>
+<div id="toast" role="status"></div><div id="menu" hidden></div><dialog id="modal"><div id="modal-content"></div></dialog><input type="file" id="project-import" accept="application/json" hidden><input type="file" id="asset-upload" accept="image/*" multiple hidden>
+<script type="module" src="app.js"></script>
+</body></html>
